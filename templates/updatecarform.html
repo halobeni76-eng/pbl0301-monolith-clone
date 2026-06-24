@@ -1,0 +1,47 @@
+{% include 'header.html' %}
+  <body>
+  <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{{appType}} | Car Project</h1>
+                <h3>Demo:
+                        <a href="{{url_for('createcar')}}">Create</a>
+                        /
+                        <a href="{{url_for('readcar')}}">Read</a>
+                        /
+                        <a href="{{url_for('updatecar')}}">Update</a>
+                        /
+                        <a href="{{url_for('deletecar')}}">Delete</a>
+                        /
+                        <a href="{{url_for('searchcar')}}">Search</a>
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Edit Data Mobil (ID: {{car.id}})</h4>
+                <form method="POST" action="{{ url_for('updatecarsave', car_id=car.id) }}">
+                    <div class="form-group">
+                        <label>Car Name</label>
+                        <input type="text" name="carName" class="form-control" value="{{ car.carname }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Car Brand</label>
+                        <input type="text" name="carBrand" class="form-control" value="{{ car.carbrand }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Car Model</label>
+                        <input type="text" name="carModel" class="form-control" value="{{ car.carmodel }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Car Price (USD)</label>
+                        <input type="text" name="carPrice" class="form-control" value="{{ car.carprice }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <a href="{{ url_for('updatecar') }}" class="btn btn-default">Batal</a>
+                </form>
+            </div>
+        </div>
+  </div>
+  </body>
+{% include 'footer.html' %}

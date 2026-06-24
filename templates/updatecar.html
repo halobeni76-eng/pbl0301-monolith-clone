@@ -1,0 +1,53 @@
+{% include 'header.html' %}
+  <body>
+  <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{{appType}} | Car Project</h1>
+                <h3>Demo:
+                        <a href="{{url_for('createcar')}}">Create</a>
+                        /
+                        <a href="{{url_for('readcar')}}">Read</a>
+                        /
+                        <a href="{{url_for('updatecar')}}">Update</a>
+                        /
+                        <a href="{{url_for('deletecar')}}">Delete</a>
+                        /
+                        <a href="{{url_for('searchcar')}}">Search</a>
+                </h3> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Update Car Data — Pilih Mobil</h4>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Brand</th>
+                      <th>Model</th>
+                      <th>Price (USD)</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for data in rows %}
+                    <tr>
+                      <td>{{data.id}}</td>
+                      <td>{{data.carname}}</td>
+                      <td>{{data.carbrand}}</td>
+                      <td>{{data.carmodel}}</td>
+                      <td>{{data.carprice}}</td>
+                      <td><a href="{{ url_for('updatecarsave', car_id=data.id) }}" class="btn btn-warning btn-sm">Edit</a></td>
+                    </tr>
+                  {% else %}
+                    <tr><td colspan="6">Tidak ada data.</td></tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+        </div>
+  </div>
+  </body>
+{% include 'footer.html' %}
